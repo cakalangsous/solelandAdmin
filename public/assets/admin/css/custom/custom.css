@@ -1,0 +1,48 @@
+/***
+
+**********************************
+**								**
+**	starter-kit custom styles	**
+**								**
+**		 made by Benkin			**
+**								**
+**********************************
+
+***/
+
+.d-flex {
+	display: flex;
+}
+
+.flex-center {
+	display: flex;
+	justify-content: center;
+	align-items: center;
+}
+
+table.checkbox-table tr td:first-child {
+	text-transform: capitalize;
+}
+
+[type='checkbox'] + span:not(.lever) {
+	padding-left: 30px;
+}
+
+.w-100 {
+	width: 100%;
+}
+
+/* .sidenav li a.active {
+	background: #303f9f;
+    background: -webkit-linear-gradient(45deg, #303f9f, #1976d2) !important;
+    background: linear-gradient(45deg, #303f9f, #1976d2) !important;
+} */
+
+.input-field.col label {
+	left: 1rem;
+}
+
+#breadcrumbs-wrapper .breadcrumbs .active {
+    font-weight: normal;
+    color: #d2d2d2;
+}

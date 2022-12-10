@@ -1,0 +1,76 @@
+<?php
+    namespace App\Http\Controllers\Admin;
+
+    use App\Http\Controllers\AdminController;
+    use Illuminate\Http\Request;
+    use App\Http\Requests\Store{{modelName}};
+    use App\Models\{{modelName}};
+    use Illuminate\Support\Collection;
+
+    class {{modelName}}Controller extends AdminController
+    {
+        public function __construct()
+        {
+            $this->data['menu_group'] = '{{modelNamePluralLowerCase}}';
+            $this->data['active'] = '{{modelNamePluralLowerCase}}';
+        }
+        public function index()
+        {
+            $this->data['{{modelNamePluralLowerCase}}'] = {{modelName}}::orderByDesc('id')->get();
+            $this->data['link'] = route('admin.{{modelNamePluralLowerCase}}.create');
+            $this->data['title'] = 'All '.ucwords(str_replace('_', ' ', '{{modelNamePluralLowerCase}}'));
+            $this->data['button_name'] = 'Add '.ucwords(str_replace('_', ' ', '{{modelNamePluralLowerCase}}'));
+            return $this->admin_view('{{modelNameSingularCamelCase}}.list', $this->data);
+        }
+        
+        public function create()
+        {
+            $this->data['title'] = "Create New ".ucwords(str_replace('_', ' ', '{{modelName}}'));
+            return $this->admin_view('{{modelNameSingularCamelCase}}.create', $this->data);
+        }
+        
+        public function store(Store{{modelName}} $request)
+        {
+            ${{modelNameSingularLowerCase}} = {{modelName}}::create($request->all());
+            return redirect(route('admin.{{modelNamePluralLowerCase}}.index'))->with(['message' => 'New '.ucwords(str_replace('_', ' ', '{{modelNamePluralLowerCase}}')).' data stored.']);
+            return response()->json(['status' => true, 'message' => 'New {{modelNamePluralLowerCase}} data stored.', 'redirect' => route('admin.{{modelNamePluralLowerCase}}.index')], 201);
+        }
+        
+        public function show({{modelName}} ${{modelNameSingularLowerCase}})
+        {
+            $this->data['{{modelNameSingularLowerCase}}'] = ${{modelNameSingularLowerCase}};
+            $this->data['title'] = 'Showing {{modelName}} detail';
+            return $this->admin_view('{{modelNameSingularCamelCase}}.show', $this->data);
+        }
+        
+        public function edit({{modelName}} ${{modelNameSingularLowerCase}})
+        {
+            $this->data['{{modelNameSingularLowerCase}}'] = ${{modelNameSingularLowerCase}};
+            $this->data['title'] = 'Edit '.ucwords(str_replace('_', ' ', '{{modelNameSingularLowerCase}}'));
+            return $this->admin_view('{{modelNameSingularCamelCase}}.edit', $this->data);
+        }
+        
+        public function update(Store{{modelName}} $request, {{modelName}} ${{modelNameSingularLowerCase}})
+        {
+            if (!${{modelNameSingularLowerCase}}) {
+                return response()->json(['status' => false, 'message' => ucwords(str_replace('_', ' ', '{{modelNameSingularLowerCase}}')).' not found', 'redirect' => false], 404);
+            }
+
+            {{columnUpdate}}
+            
+            ${{modelNameSingularLowerCase}}->save();
+            return redirect(route('admin.{{modelNamePluralLowerCase}}.index'))->with(['message' => ucwords(str_replace('_', ' ', '{{modelNameSingularLowerCase}}')).' data updated.']);
+            return response()->json(['status' => true, 'message' => 'New {{modelNameSingularLowerCase}} data updated.', 'redirect' => route('admin.{{modelNamePluralLowerCase}}.index')], 200);
+        }
+        
+        public function destroy({{modelName}} ${{modelNameSingularLowerCase}})
+        {
+            if (!${{modelNameSingularLowerCase}}) {
+                return response()->json(['status' => false, 'message' => '{{modelNameSingularLowerCase}} not found', 'redirect' => false], 404);
+            }
+            
+            {{modelName}}::destroy(${{modelNameSingularLowerCase}}->id);
+            return redirect(route('admin.{{modelNamePluralLowerCase}}.index'))->with(['message' => ucwords(str_replace('_', ' ', '{{modelNameSingularLowerCase}}')).' deleted']);
+            return response()->json(['status' => true, 'message' => ucwords(str_replace('_', ' ', '{{modelNameSingularLowerCase}}')).' deleted', 'redirect' => route('admin.{{modelNamePluralLowerCase}}.index')]);
+        }
+    }

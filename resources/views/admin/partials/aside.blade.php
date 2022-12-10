@@ -10,56 +10,53 @@
         </li>
         
         @include('admin.partials.aside_generated')
-
-        @canany(['roles_view', 'permissions_view', 'users_view', 'access_view', 'site_settings_view', 'site_settings_update'])
-            <li class="navigation-header"><a class="navigation-header-text">Auth & Settings </a><i class="navigation-header-icon material-icons">more_horiz</i>
-            </li>
+        @canany(['roles_view', 'permissions_view', 'users_view', 'access_view'])
+        <li class="{{ $parent == 'auth' ? 'active' : '' }} bold">
+            <a class="collapsible-header waves-effect waves-cyan" href="JavaScript:void(0)">
+                <i class="material-icons">lock</i><span class="menu-title" data-i18n="Templates">Auth</span>
+            </a>
+            <div class="collapsible-body">
+                <ul class="collapsible collapsible-sub" data-collapsible="accordion">
+                    @can('roles_view')
+                    <li>
+                        <a class="waves-effect waves-cyan {{ $active == 'roles' ? 'active '.$site_settings->where('setting_name', 'theme_color')->first()->setting_value : '' }}" href="{{ route('admin.roles.index') }}">
+                            <i class="material-icons">radio_button_unchecked</i><span>Roles</span>
+                        </a>
+                    </li>
+                    @endcan
+                    
+                    @can('permissions_view')
+                    <li>
+                        <a class="waves-effect waves-cyan {{ $active == 'permission' ? 'active '.$site_settings->where('setting_name', 'theme_color')->first()->setting_value : '' }}" href="{{ route('admin.permission.index') }}">
+                            <i class="material-icons">radio_button_unchecked</i><span>Permission</span>
+                        </a>
+                    </li>
+                    @endcan
+                    
+                    @can('users_view')
+                    <li>
+                        <a class="waves-effect waves-cyan {{ $active == 'user' ? 'active '.$site_settings->where('setting_name', 'theme_color')->first()->setting_value : '' }}" href="{{ route('admin.users.index') }}">
+                            <i class="material-icons">radio_button_unchecked</i><span>Users</span>
+                        </a>
+                    </li>
+                    @endcan
+                    
+                    @can('access_view')
+                    <li>
+                        <a class="waves-effect waves-cyan {{ $active == 'access' ? 'active '.$site_settings->where('setting_name', 'theme_color')->first()->setting_value : '' }}" href="{{ route('admin.access.index') }}">
+                            <i class="material-icons">radio_button_unchecked</i><span>Access</span>
+                        </a>
+                    </li>
+                    @endcan
+                </ul>
+            </div>
+        </li>
         @endcanany
         
-        @canany(['roles_view', 'permissions_view', 'users_view', 'access_view'])
-            <li class="{{ $parent == 'auth' ? 'active' : '' }} bold">
-                <a class="collapsible-header waves-effect waves-cyan" href="JavaScript:void(0)">
-                    <i class="material-icons">lock</i><span class="menu-title" data-i18n="Templates">Auth</span>
-                </a>
-                <div class="collapsible-body">
-                    <ul class="collapsible collapsible-sub" data-collapsible="accordion">
-                        @can('roles_view')
-                            <li>
-                                <a class="waves-effect waves-cyan {{ $active == 'roles' ? 'active '.$site_settings->where('setting_name', 'theme_color')->first()->setting_value : '' }}" href="{{ route('admin.roles.index') }}">
-                                    <i class="material-icons">radio_button_unchecked</i><span>Roles</span>
-                                </a>
-                            </li>
-                        @endcan
-
-                        @can('permissions_view')
-                            <li>
-                                <a class="waves-effect waves-cyan {{ $active == 'permission' ? 'active '.$site_settings->where('setting_name', 'theme_color')->first()->setting_value : '' }}" href="{{ route('admin.permission.index') }}">
-                                    <i class="material-icons">radio_button_unchecked</i><span>Permission</span>
-                                </a>
-                            </li>
-                        @endcan
-
-                        @can('users_view')
-                            <li>
-                                <a class="waves-effect waves-cyan {{ $active == 'user' ? 'active '.$site_settings->where('setting_name', 'theme_color')->first()->setting_value : '' }}" href="{{ route('admin.users.index') }}">
-                                    <i class="material-icons">radio_button_unchecked</i><span>Users</span>
-                                </a>
-                            </li>
-                        @endcan
-
-                        @can('access_view')
-                            <li>
-                                <a class="waves-effect waves-cyan {{ $active == 'access' ? 'active '.$site_settings->where('setting_name', 'theme_color')->first()->setting_value : '' }}" href="{{ route('admin.access.index') }}">
-                                    <i class="material-icons">radio_button_unchecked</i><span>Access</span>
-                                </a>
-                            </li>
-                        @endcan
-                    </ul>
-                </div>
-            </li>
-        @endcanany
-
+        
         @canany(['site_settings_view', 'site_settings_update'])
+            <li class="navigation-header"><a class="navigation-header-text">Developer Menu </a><i class="navigation-header-icon material-icons">more_horiz</i>
+            </li>        
             <li class="{{ $active=='site_settings'?'active':'' }} bold">
                 <a class="waves-effect waves-cyan {{ $active=='site_settings'?'active '.$site_settings->where('setting_name', 'theme_color')->first()->setting_value:'' }} " href="{{ route('admin.site_settings.index') }}">
                     <i class="material-icons">settings</i>

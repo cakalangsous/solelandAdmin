@@ -9,7 +9,7 @@
                         <h3 class="card-title">{{ $title }} Form</h3>
                         <div class="row">
                             <div class="col s12">
-                                <form action="{{ url('admin/solepedia_image/'.$solepedia_image->id) }}" id="store_user" enctype="multipart/form-data" method="POST" class="col s12">
+                                <form action="{{ url('admin/solepedia_images/'.$solepedia_image->id) }}" id="store_user" enctype="multipart/form-data" method="POST" class="col s12">
                                     @csrf
                                     @method('PUT')
                                     

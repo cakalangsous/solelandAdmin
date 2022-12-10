@@ -28,9 +28,12 @@
                                     
                                     <div class="row mt-10">
                                         <div class="input-field">
+                                            <a class="btn btn-small amber darken-2 mr-2 waves-effect waves-light" href="{{ route('admin.sole_images', ['id' => $solepedia->id]) }}">
+                                                Back
+                                            </a>
         									<button class="waves-effect waves-light btn gradient-45deg-green-teal z-depth-4">
         										Submit
-        										<i class="material-icons right">send</i>
+                                                <i class="material-icons right">send</i>
         									</button>
         								</div>
                                     </div>

@@ -64,20 +64,28 @@ class SolepediaImageController extends AdminController
         if (!$solepedia_image) {
             return response()->json(['status' => false, 'message' => ucwords(str_replace('_', ' ', 'solepedia_image')) . ' not found', 'redirect' => false], 404);
         }
+        $validated = $request->validated();
 
         $solepedia_image->solepedia_id = $request->solepedia_id;
-        $solepedia_image->image = $request->image;
 
+        if ($request->hasFile('image')) {
+            $solepedia_image->image = $request->file('image')->store('solepedia/' . $request->solepedia_id);
+        }
 
         $solepedia_image->save();
-        return redirect(route('admin.solepedia_images.index'))->with(['message' => ucwords(str_replace('_', ' ', 'solepedia_image')) . ' data updated.']);
-        return response()->json(['status' => true, 'message' => 'New solepedia_image data updated.', 'redirect' => route('admin.solepedia_images.index')], 200);
+        return redirect(route('admin.sole_images', ['id' => $solepedia_image->solepedia_id]))->with(['message' => ucwords(str_replace('_', ' ', 'solepedia_image')) . ' data updated.']);
+        // return response()->json(['status' => true, 'message' => 'New solepedia_image data updated.', 'redirect' => route('admin.solepedia_images.index')], 200);
     }
 
     public function destroy(SolepediaImage $solepedia_image)
     {
         if (!$solepedia_image) {
             return response()->json(['status' => false, 'message' => 'solepedia_image not found', 'redirect' => false], 404);
+        }
+
+        $image = storage_path('app/public/' . $solepedia_image->setting_value);
+        if (file_exists($image)) {
+            @unlink($image);
         }
 
         SolepediaImage::destroy($solepedia_image->id);

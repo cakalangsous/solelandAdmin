@@ -11,8 +11,10 @@
         
         @include('admin.partials.aside_generated')
 
-        <li class="navigation-header"><a class="navigation-header-text">Auth & Settings </a><i class="navigation-header-icon material-icons">more_horiz</i>
-        </li>
+        @canany(['roles_view', 'permissions_view', 'users_view', 'access_view', 'site_settings_view', 'site_settings_update'])
+            <li class="navigation-header"><a class="navigation-header-text">Auth & Settings </a><i class="navigation-header-icon material-icons">more_horiz</i>
+            </li>
+        @endcanany
         
         @canany(['roles_view', 'permissions_view', 'users_view', 'access_view'])
             <li class="{{ $parent == 'auth' ? 'active' : '' }} bold">
@@ -57,12 +59,14 @@
             </li>
         @endcanany
 
-        <li class="{{ $active=='site_settings'?'active':'' }} bold">
-            <a class="waves-effect waves-cyan {{ $active=='site_settings'?'active '.$site_settings->where('setting_name', 'theme_color')->first()->setting_value:'' }} " href="{{ route('admin.site_settings.index') }}">
-                <i class="material-icons">settings</i>
-                <span class="menu-title" data-i18n="">Site Settings</span>
-            </a>
-        </li>
+        @canany(['site_settings_view', 'site_settings_update'])
+            <li class="{{ $active=='site_settings'?'active':'' }} bold">
+                <a class="waves-effect waves-cyan {{ $active=='site_settings'?'active '.$site_settings->where('setting_name', 'theme_color')->first()->setting_value:'' }} " href="{{ route('admin.site_settings.index') }}">
+                    <i class="material-icons">settings</i>
+                    <span class="menu-title" data-i18n="">Site Settings</span>
+                </a>
+            </li>
+        @endcanany
 
         {{-- @hasrole('Developer')
             <li class="navigation-header mt-8 mb-4"><a class="navigation-header-text">Developer Menu</a><i class="navigation-header-icon material-icons">more_horiz</i>

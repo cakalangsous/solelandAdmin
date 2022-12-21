@@ -22,6 +22,7 @@
                                                     <th>No</th>
                                                     <th>City</th>
 													<th>Title</th>
+													<th>Type</th>
 													
                                                     <th>Action</th>
                                                 </tr>
@@ -32,6 +33,7 @@
                                                         <td>{{ $loop->iteration }}</td>
                                                         <td>{{ $solepedia->city->name }}</td>
 														<td>{{ $solepedia->title }}</td>
+														<td>{{ $solepedia->type }}</td>
 														
                                                         <td class="d-flex">
                                                             <a class="btn btn-small green darken-2 mr-2 waves-effect waves-light" href="{{ route('admin.sole_images', ['id' => $solepedia->id]) }}"><i class="material-icons">image</i></a>

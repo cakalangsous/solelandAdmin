@@ -20,19 +20,24 @@
                                             <thead>
                                                 <tr>
                                                     <th>No</th>
-													<th>image</th>
+                                                    <th>question_id</th>
+													<th>answer</th>
+													<th>isCorrect</th>
+													
                                                     <th>Action</th>
                                                 </tr>
                                             </thead>
                                             <tbody>
-                                                @foreach ($solepedia_images as $solepedia_image)
+                                                @foreach ($answers as $answers)
                                                     <tr>
                                                         <td>{{ $loop->iteration }}</td>
-														<td><img src="{{ asset('storage/'.$solepedia_image->content) }}" width="75" class="responsive-image materialboxed" alt=""></td>
+                                                        <td>{{ $answers->question_id }}</td>
+														<td>{{ $answers->answer }}</td>
+														<td>{{ $answers->isCorrect }}</td>
 														
                                                         <td class="d-flex">
-                                                            <a class="btn btn-small blue darken-2 mr-2 waves-effect waves-light" href="{{ url('admin/solepedia_images/'.$solepedia_image->id.'/edit') }}"><i class="material-icons">edit</i></a>
-                                                            <form action="{{ url('admin/solepedia_images/'.$solepedia_image->id) }}" name="solepedia_image{{ $solepedia_image->id }}form" data-data="{{ $solepedia->title }}" class="delete-form" method="POST">
+                                                            <a class="btn btn-small blue darken-2 mr-2 waves-effect waves-light" href="{{ url('admin/answers/'.$answers->id.'/edit') }}"><i class="material-icons">edit</i></a>
+                                                            <form action="{{ url('admin/answers/'.$answers->id) }}" name="answers{{ $answers->id }}form" data-data="{{ $answers->id }}" class="delete-form" method="POST">
                                                                 @csrf
                                                                 @method('DELETE')
                                                                 <button type="submit" class="btn btn-small waves-effect waves-light red darken-2 delete-btn"><i class="material-icons">delete</i> <span class="hide-on-small-only">Delete</span></button>

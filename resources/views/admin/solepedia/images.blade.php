@@ -14,15 +14,15 @@
                                     <input type="hidden" name="solepedia_id" value="{{ $solepedia->id }}">
                                     <div class="row section">
                                         <div class="input-field">
-                                            <p>Image</p>
-                                            <span class="helper-text" data-error="wrong" data-success="right">Max Size : 1MB</span>
+                                            <p>Content</p>
+                                            {{-- <span class="helper-text" data-error="wrong" data-success="right">Max Size : 1MB</span> --}}
                                             @error('logo_big')
                                                 <small class="errorName">
                                                     <div class="error">{{ $message }}</div>
                                                 </small>
                                             @enderror
                                         </div>
-                                        <input type="file" name="image" class="dropify" />
+                                        <input type="file" name="content" class="dropify" />
                                     </div>
 
                                     

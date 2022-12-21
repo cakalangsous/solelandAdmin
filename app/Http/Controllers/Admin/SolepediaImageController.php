@@ -35,8 +35,8 @@ class SolepediaImageController extends AdminController
     public function store(StoreSolepediaImage $request)
     {
         $validated = $request->validated();
-        if ($request->hasFile('image')) {
-            $validated["image"] = $request->file('image')->store('solepedia/' . $request->solepedia_id);
+        if ($request->hasFile('content')) {
+            $validated["content"] = $request->file('content')->store('solepedia/' . $request->solepedia_id);
         }
 
         $solepedia_image = SolepediaImage::create($validated);

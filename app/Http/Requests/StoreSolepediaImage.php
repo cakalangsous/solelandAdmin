@@ -14,7 +14,7 @@ class StoreSolepediaImage extends FormRequest
     {
         return [
             "solepedia_id" => "required|integer",
-            "image" => "required|image|mimes:png,jpg,jpeg,svg"
+            "content" => "required|file|mimes:png,jpg,jpeg,svg,mp4"
         ];
     }
 }

@@ -12,6 +12,10 @@ class StoreSolepedia extends FormRequest
     }
     public function rules()
     {
-        return [];
+        return [
+            "city_id" => "required|numeric",
+            "title" => "required",
+            "type" => "required",
+        ];
     }
 }

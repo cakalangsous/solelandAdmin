@@ -24,7 +24,7 @@ class CheckBanned
 
             $request->session()->regenerateToken();
 
-            return redirect(route('login'))->withErrors(['login' => 'Your Account is suspended, please contact Admin.']);
+            return redirect(route('admin.login'))->withErrors(['login' => 'Your Account is suspended, please contact Admin.']);
 
         }
         

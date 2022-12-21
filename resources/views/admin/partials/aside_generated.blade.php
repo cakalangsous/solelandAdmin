@@ -23,3 +23,24 @@
     </a>
 </li> --}}
 
+<li class="{{ $active=='question_categories'?'active':'' }} bold">
+    <a class="waves-effect waves-cyan {{ $active=='question_categories'?'active '.$site_settings->where('setting_name', 'theme_color')->first()->setting_value:'' }} " href="{{ route('admin.question_categories.index') }}">
+        <i class="material-icons">assignment</i>
+        <span class="menu-title" data-i18n="">Question Categories</span>
+    </a>
+</li>
+
+<li class="{{ $active=='questions'?'active':'' }} bold">
+    <a class="waves-effect waves-cyan {{ $active=='questions'?'active '.$site_settings->where('setting_name', 'theme_color')->first()->setting_value:'' }} " href="{{ route('admin.questions.index') }}">
+        <i class="material-icons">assignment</i>
+        <span class="menu-title" data-i18n="">Questions</span>
+    </a>
+</li>
+
+<li class="{{ $active=='answers'?'active':'' }} bold">
+    <a class="waves-effect waves-cyan {{ $active=='answers'?'active '.$site_settings->where('setting_name', 'theme_color')->first()->setting_value:'' }} " href="{{ route('admin.answers.index') }}">
+        <i class="material-icons">assignment</i>
+        <span class="menu-title" data-i18n="">Answers</span>
+    </a>
+</li>
+

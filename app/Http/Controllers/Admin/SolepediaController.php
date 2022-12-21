@@ -41,7 +41,7 @@ class SolepediaController extends AdminController
     public function images_add($id)
     {
         $solepedia = Solepedia::whereId($id)->firstOrFail();
-        $this->data['title'] = "Add image for " . $solepedia->title;
+        $this->data['title'] = "Add content for " . $solepedia->title;
         $this->data['solepedia'] = $solepedia;
         return $this->admin_view('solepedia.images', $this->data);
     }

@@ -20,19 +20,30 @@
                                             <thead>
                                                 <tr>
                                                     <th>No</th>
-													<th>image</th>
+                                                    <th>Category</th>
+													<th>City</th>
+													<th>Type</th>
+													<th>Question</th>
+													<th>Reward Exp</th>
+													<th>Reward Item</th>
+													
                                                     <th>Action</th>
                                                 </tr>
                                             </thead>
                                             <tbody>
-                                                @foreach ($solepedia_images as $solepedia_image)
+                                                @foreach ($questions as $questions)
                                                     <tr>
                                                         <td>{{ $loop->iteration }}</td>
-														<td><img src="{{ asset('storage/'.$solepedia_image->content) }}" width="75" class="responsive-image materialboxed" alt=""></td>
+                                                        <td>{{ $questions->category->name }}</td>
+														<td>{{ $questions->city->name }}</td>
+														<td>{{ $questions->type }}</td>
+														<td>{{ $questions->question }}</td>
+														<td>{{ $questions->reward_exp }}</td>
+														<td>{{ $questions->reward_item }}</td>
 														
                                                         <td class="d-flex">
-                                                            <a class="btn btn-small blue darken-2 mr-2 waves-effect waves-light" href="{{ url('admin/solepedia_images/'.$solepedia_image->id.'/edit') }}"><i class="material-icons">edit</i></a>
-                                                            <form action="{{ url('admin/solepedia_images/'.$solepedia_image->id) }}" name="solepedia_image{{ $solepedia_image->id }}form" data-data="{{ $solepedia->title }}" class="delete-form" method="POST">
+                                                            <a class="btn btn-small blue darken-2 mr-2 waves-effect waves-light" href="{{ url('admin/questions/'.$questions->id.'/edit') }}"><i class="material-icons">edit</i></a>
+                                                            <form action="{{ url('admin/questions/'.$questions->id) }}" name="questions{{ $questions->id }}form" data-data="{{ $questions->id }}" class="delete-form" method="POST">
                                                                 @csrf
                                                                 @method('DELETE')
                                                                 <button type="submit" class="btn btn-small waves-effect waves-light red darken-2 delete-btn"><i class="material-icons">delete</i> <span class="hide-on-small-only">Delete</span></button>

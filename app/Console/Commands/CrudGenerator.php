@@ -255,6 +255,6 @@ class CrudGenerator extends Command
             mkdir($path, 0777, true);
 
         file_put_contents(base_path("resources/views/admin/" . Str::of($name)->camel() . "/edit.blade.php"), $listTemplate);
-        $this->line('<fg=green>Create file generated</>');
+        $this->line('<fg=green>Edit file generated</>');
     }
 }

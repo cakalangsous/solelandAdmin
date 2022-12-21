@@ -27,6 +27,31 @@
                                             <label for="Title">Title *</label>
                                         </div>
                                     </div>
+                                    <div class="row">
+                                        <label for="type">Type</label>
+                                        <div class="input-field d-flex">
+                                            <p class="mr-5">
+                                                <label>
+                                                  <input class="with-gap" name="type" value="book" type="radio" checked />
+                                                  <span>Book</span>
+                                                </label>
+                                            </p>
+    
+                                            <p class="mr-5">
+                                                <label>
+                                                  <input class="with-gap" name="type" value="komik" type="radio" />
+                                                  <span>Komik</span>
+                                                </label>
+                                            </p>
+
+                                            <p>
+                                                <label>
+                                                  <input class="with-gap" name="type" value="video" type="radio" />
+                                                  <span>Video</span>
+                                                </label>
+                                            </p>
+                                        </div>
+                                    </div>
 
                                     
                                     <div class="row mt-10">

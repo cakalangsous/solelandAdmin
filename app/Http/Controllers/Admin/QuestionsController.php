@@ -4,6 +4,7 @@
     use App\Http\Controllers\AdminController;
     use Illuminate\Http\Request;
     use App\Http\Requests\StoreQuestions;
+use App\Models\Answers;
 use App\Models\Cities;
 use App\Models\QuestionCategories;
 use App\Models\Questions;
@@ -15,6 +16,7 @@ use App\Models\Questions;
         {
             $this->data['menu_group'] = 'questions';
             $this->data['active'] = 'questions';
+            $this->data['parent'] = 'quiz';
         }
         public function index()
         {
@@ -30,6 +32,7 @@ use App\Models\Questions;
             $this->data['title'] = "Create New ".ucwords(str_replace('_', ' ', 'Questions'));
             $this->data["cities"] = Cities::all();
             $this->data["category"] = QuestionCategories::all();
+            $this->data['active'] = 'add_questions';
             return $this->admin_view('questions.create', $this->data);
         }
         
@@ -50,6 +53,9 @@ use App\Models\Questions;
         public function edit(Questions $question)
         {
             $this->data['question'] = $question;
+            $this->data['answer'] = Answers::where("question_id", $question->id)->get();
+            $this->data["category"] = QuestionCategories::all();
+            $this->data["cities"] = Cities::all();
             $this->data['title'] = 'Edit '.ucwords(str_replace('_', ' ', 'question'));
             return $this->admin_view('questions.edit', $this->data);
         }

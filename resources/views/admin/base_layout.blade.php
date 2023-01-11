@@ -25,7 +25,7 @@
     <link rel="stylesheet" type="text/css" href="{{ asset('assets/admin/css/themes/vertical-modern-menu-template/materialize.css') }}">
     <link rel="stylesheet" type="text/css" href="{{ asset('assets/admin/css/themes/vertical-modern-menu-template/style.css') }}">
     <link rel="stylesheet" type="text/css" href="{{ asset('assets/admin/css/pages/data-tables.css') }}">
-    <link rel="stylesheet" type="text/css" href="{{ asset('assets/admin/css/pages/advence-ui-media.min.css') }}">
+    <link rel="stylesheet" type="text/css" href="{{ asset('assets/admin/css/pages/advance-ui-media.min.css') }}">
     <link rel="stylesheet" type="text/css" href="{{ asset('assets/admin/css/pages/dashboard.css') }}">
     <link rel="stylesheet" type="text/css" href="{{ asset('assets/admin/css/pages/page-users.css') }}">
     
@@ -215,6 +215,8 @@
     <script src="{{ asset('assets/admin/js/scripts/page-users.js') }}"></script>
     <script src="{{ asset('assets/admin/js/scripts/form-file-uploads.js') }}"></script>
     <script src="{{ asset('assets/admin/js/scripts/extra-components-sweetalert.js') }}"></script>
+
+    @yield("script")
     
     <script>
         $(".select2").select2({

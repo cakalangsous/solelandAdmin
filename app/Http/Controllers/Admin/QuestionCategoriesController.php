@@ -14,6 +14,8 @@ use App\Models\QuestionCategories;
         {
             $this->data['menu_group'] = 'question_categories';
             $this->data['active'] = 'question_categories';
+            $this->data['parent'] = 'quiz';
+
         }
         public function index()
         {
